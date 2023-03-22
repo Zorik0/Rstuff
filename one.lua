@@ -78,7 +78,7 @@ spawn(function()
        if isRunning then
          game:GetService("ReplicatedStorage").Events.Shop.CS_EquipBestPetEvent:FireServer()
        end
-       wait(15)
+       wait(1)
    end
 end)
 
