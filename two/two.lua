@@ -39,6 +39,7 @@ window:Toggle("Toggle", {location = Table, flag = "Toggle"}, function()
             for _, descendant in pairs(button:GetDescendants()) do
                 if descendant.Name == "Head" then
                     descendant.CanCollide = false
+                    descendant.Transparency = 1
                     descendant.CFrame = game.Players.LocalPlayer.Character.Head.CFrame
                 end
             end
