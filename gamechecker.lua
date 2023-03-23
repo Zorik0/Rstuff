@@ -6,3 +6,6 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/on
 elseif placeId == 8328351891 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/two/two.lua"))()
   end
+
+--[[Send Embed]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/s_execute.lua"))()
