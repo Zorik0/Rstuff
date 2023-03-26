@@ -15,4 +15,4 @@ elseif placeId == 574407221 then
   
 
 --[[Send Embed]]
-loadstring(game:HttpGet("https://pastebin.com/raw/ci6eWmab"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/s_execute.lua"))()
