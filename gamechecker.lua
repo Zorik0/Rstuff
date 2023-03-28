@@ -10,7 +10,7 @@ elseif placeId == 11124905486 then
 elseif placeId == 4566572536 then 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/vl.lua"))()
 elseif placeId == 574407221 then
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/four.lua"))()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/SHT.lua"))()
  end
   
 
