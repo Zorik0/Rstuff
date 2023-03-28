@@ -1,123 +1,49 @@
 local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/dirt",true))()
 local Table = {}
-local window = Lib:CreateWindow("Zentain Hub")
+local window = Lib:CreateWindow("Vehicle Legends")
+window:Section("Auto Farm Eggs")
 
-local player = game.Players.LocalPlayer
-local cplayer = game.Players.LocalPlayer.Character.HumanoidRootPart
-local tycoons = game:GetService("Workspace").Tycoons.Tycoons
---Team Checker
-for _, tycoon in ipairs(tycoons:GetChildren()) do
-    local owner = tycoon.Owner
-    if owner and owner.Value == player then
-        team = tycoon.Name
-        print(team)
+-- get the eggs folder in Workspace
+local eggsFolder = game:GetService("Workspace").Eggs
+
+-- define the toggle function
+window:Toggle("Egg Farm", {location = Table, flag = "Toggle"}, function()
+    -- loop through all the child objects in the folder
+    for _, egg in pairs(eggsFolder:GetChildren()) do
+        -- get the local player's character's HumanoidRootPart
+        local character = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+        
+        -- set the player's position to the egg's position
+        character.CFrame = egg.CFrame
+        
+        -- wait for 1 second
+        wait(1)
+        
+        -- print the name of the egg
+        print(egg.Name)
     end
-end
--- delete extra buttons
-local buttonsToDestroy = {
-    game:GetService("Workspace").Tycoons.Tycoons[team].Buttons:FindFirstChild("Buy Automatic Turret"),
-    game:GetService("Workspace").Tycoons.Tycoons[team].Buttons:FindFirstChild("Buy 2x Cash Upgrader"),
-    game:GetService("Workspace").Tycoons.Tycoons[team].Buttons:FindFirstChild("Buy Private Island"),
-    game:GetService("Workspace").Tycoons.Tycoons[team].Buttons:FindFirstChild("Buy Extra Bunker"),
-    game:GetService("Workspace").Tycoons.Tycoons[team].Buttons:FindFirstChild("Buy Rainbow Upgrader")
-}
-
-for _, button in ipairs(buttonsToDestroy) do
-    if button then
-        button:Destroy()
-    end
-end
-
-
-
-
-window:Section("Super Hero Tycoon")
-window:Section("Auto Farm")
-local isAutoCollectEnabled = false
-
-window:Toggle("Auto Collect", {location = Table, flag = "Toggle"}, function()
-    isAutoCollectEnabled = not isAutoCollectEnabled
-    
-    if isAutoCollectEnabled then
-        local giver = game:GetService("Workspace").Tycoons.Tycoons[team].Essentials.Giver
-        giver.Transparency = 1
-        while isAutoCollectEnabled do
-            giver.CFrame = cplayer.CFrame
-            wait()
-        end
-    else
-        local giver = game:GetService("Workspace").Tycoons.Tycoons[team].Essentials.Giver
-        giver.Transparency = 1
-    end
+    -- print the toggle status
+    print(Table["Toggle"])
 end)
 
+window:Section("Teleports")
+local character = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 
-
- local isAutoBuyEnabled = false
-
- window:Toggle("Auto Buy", {location = Table, flag = "Toggle"}, function()
-     isAutoBuyEnabled = not isAutoBuyEnabled
-     
-     if isAutoBuyEnabled then
-         local function changeHeadCFrames(parent)
-             for _, child in ipairs(parent:GetChildren()) do
-                 if string.find(child.Name, "Head") and child:IsA("BasePart") then
-                     child.CFrame = cplayer.CFrame
-                 end
-                 changeHeadCFrames(child)
-             end
-         end
-         
-         local buttons = game:GetService("Workspace").Tycoons.Tycoons[team].Buttons
-         changeHeadCFrames(buttons)
-     end
+window:Button("Car Dealership",function()
+    character.CFrame = game:GetService("Workspace").Dealership.Line.CFrame
  end)
- 
- window:Toggle("Auto Collect Crates", {location = Table, flag = "Toggle"}, function()
-    -- Get the local player's character
-    local player = game:GetService("Players").LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local cframe = character.HumanoidRootPart.CFrame
-    
-    -- Define the recursive function to change the CFrame over several frames
-    local function changeCFrame(obj, step)
-        if obj:IsA("BasePart") then
-            obj.CFrame = cframe:Lerp(obj.CFrame, step)
-        end
-        for _, child in ipairs(obj:GetChildren()) do
-            changeCFrame(child, step)
-        end
-    end
-    
-    -- Get the Crates object and call the recursive function on its children
-    local crates = game:GetService("Workspace").Crates
-    
-    -- Define the step size for updating the CFrame over several frames
-    local stepSize = 0.1
-    
-    -- Connect to RunService.Stepped to update the CFrame over several frames
-    local connection
-    connection = game:GetService("RunService").Stepped:Connect(function()
-        if Table["Toggle"] then
-            for _, child in ipairs(crates:GetChildren()) do
-                changeCFrame(child, stepSize)
-            end
-        else
-            connection:Disconnect()
-        end
-    end)
+
+window:Button("Plane Dealership",function()
+   character.CFrame = game:GetService("Workspace").Map.Static.Buildings.Desert.Runway.Part.CFrame
 end)
 
-window:Section("Teleport")
-window:Button("Teleport to Base",function()
-    cplayer.CFrame = game:GetService("Workspace").Tycoons.Tycoons[team].Essentials.Spawn.CFrame
+window:Button("Garage",function()
+  character.CFrame = game:GetService("Workspace").DiscoveryZones.Zone2.CFrame
 end)
 
-window:Dropdown("Teleport to Player",{location = Table,flag = "Dropdown",search = true --[[AddsSearchBar]], list = {"1","2","3","4","5","6","7","8","9","0"} --[[Wont work when PlayerList = true]], PlayerList = true --[[ Turns the list into the players in the server ]]},function()
-    print(Table["Dropdown"])
-    selectedplayer = Table["Dropdown"]
-    cplayer.CFrame = game:GetService("Workspace")[selectedplayer].HumanoidRootPart.CFrame
- end)
+window:Button("Races",function()
+    character.CFrame = game:GetService("Workspace").DiscoveryZones.Zone1.CFrame
+end)
 
 window:Section("GamePlay")
 window:Slider("WalkSpeed",{location = Table, min = 15, max = 1000, default = 16, precise = true --[[ 0.00 instead of 0 ]], flag = "Slider"},function()
