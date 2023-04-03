@@ -27,7 +27,7 @@ window:Toggle("Egg Farm", {location = Table, flag = "Toggle"}, function()
 end)
 
 window:Button("Vehicle Fly [X]",function()
-    local FlyKey = Enum.KeyCode.V
+    local FlyKey = Enum.KeyCode.X
 local SpeedKey = Enum.KeyCode.LeftControl
 
 local SpeedKeyMultiplier = 3
