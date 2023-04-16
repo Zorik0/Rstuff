@@ -11,6 +11,8 @@ elseif placeId == 574407221 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/SHT.lua"))()
 elseif placeId == 11124905486 then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/shootuff"))()
+elseif placeId == 12980045478 then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/wallsim"))()
   else
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Zorik0/Rstuff/main/uni.lua"))()
   end
