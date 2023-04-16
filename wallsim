@@ -1,0 +1,120 @@
+local Lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/dirt",true))()
+local Table = {}
+local window = Lib:CreateWindow("Zentain Hub")
+window:Section("Wall Smash Simulator")
+window:Section("AutoFarm")
+
+local toggleFlag = false
+
+window:Toggle("Auto Punch", {location = Table, flag = "Toggle"}, function()
+    toggleFlag = not toggleFlag -- toggle the flag when the button is clicked
+    if toggleFlag then -- if toggle is turned on
+        local playerwa = game.Players.LocalPlayer.Character.HumanoidRootPart
+        while toggleFlag do -- keep executing until toggle is turned off
+            playerwa.CFrame = CFrame.new(-69.29389190673828, 3.9499948024749756, 571.0108032226562) 
+            game:GetService("ReplicatedStorage").Events.Box:FireServer(workspace.Box["9"].Model)
+            wait() -- wait a bit before executing again
+        end
+    else -- if toggle is turned off
+        local player = game.Players.LocalPlayer
+        player.Character.Head:Destroy() -- destroy player's head once
+    end
+end)
+
+
+local player = game.Players.LocalPlayer
+local playerwa = player.Character.HumanoidRootPart
+
+local toggle = false
+
+window:Toggle("Auto Wins", {location = Table, flag = "JumpToggle"}, function()
+    toggle = not toggle
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+    if toggle and input.KeyCode == Enum.KeyCode.Space then
+        playerwa.CFrame = playerwa.CFrame + Vector3.new(0, 5, 0) -- Move the player up before jumping to avoid clipping
+        player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+    end
+end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    if toggle then
+        local win = player.leaderstats.Wins.Value
+        local rebirth = player.Rebirth.Value
+        if rebirth >= 20 then
+            playerwa.CFrame = game:GetService("Workspace").Win["3000"].CFrame
+        elseif rebirth >= 10 then
+            playerwa.CFrame = game:GetService("Workspace").Win["2400"].CFrame
+        elseif rebirth >= 5 then
+            playerwa.CFrame = game:GetService("Workspace").Win["1800"].CFrame
+        elseif win >= 1400 then
+            playerwa.CFrame = game:GetService("Workspace").Win["1400"].CFrame
+        elseif win >= 700 then
+            playerwa.CFrame = game:GetService("Workspace").Win["700"].CFrame
+        elseif win >= 300 then
+            playerwa.CFrame = game:GetService("Workspace").Win["300"].CFrame
+        elseif win >= 100 then
+            playerwa.CFrame = game:GetService("Workspace").Win["100"].CFrame
+        elseif win >= 10 then
+            playerwa.CFrame = game:GetService("Workspace").Win["10"].CFrame
+        elseif win >= 0 then
+            playerwa.CFrame = game:GetService("Workspace").Win["1"].CFrame
+        end
+    end
+end)
+
+window:Toggle("Auto Rebirth", { location = Table, flag = "AutoRebirth" }, function()
+    if Table["AutoRebirth"] then
+        game:GetService("ReplicatedStorage").Events.Rebirth:FireServer(true)
+    end
+end)
+
+window:Section("Misc")
+
+window:Button("Equip Best pet",function()
+    game:GetService("ReplicatedStorage").PetSystem.SystemEquipButon:FireServer("EquipBest")
+ end)
+
+
+window:Section("GamePlay")
+window:Slider("WalkSpeed",{location = Table, min = 15, max = 1000, default = 16, precise = true --[[ 0.00 instead of 0 ]], flag = "Slider"},function()
+    print("Speed Set to"..Table["Slider"])
+    sethiddenproperty(game.Players.LocalPlayer.Character.Humanoid, "WalkSpeed", Table["Slider"])
+ end)
+
+
+ local Player = game:GetService('Players').LocalPlayer
+ local UIS = game:GetService('UserInputService')
+ 
+ local jumpHeight = 50
+ local isJumpEnabled = false
+ 
+ function Action(Object, Function)
+     if Object ~= nil then
+         Function(Object)
+     end
+ end
+ 
+ UIS.InputBegan:connect(function(UserInput)
+     if UserInput.UserInputType == Enum.UserInputType.Keyboard and UserInput.KeyCode == Enum.KeyCode.Space then
+         if isJumpEnabled then
+             Action(Player.Character.Humanoid, function(self)
+                 if self:GetState() == Enum.HumanoidStateType.Jumping or self:GetState() == Enum.HumanoidStateType.Freefall then
+                     Action(self.Parent.HumanoidRootPart, function(self)
+                         self.Velocity = Vector3.new(0, jumpHeight, 0)
+                     end)
+                 end
+             end)
+         end
+     end
+ end)
+ 
+ window:Toggle("INF Jump", {location = Table, flag = "Toggle"}, function()
+     isJumpEnabled = not isJumpEnabled
+     if isJumpEnabled then
+         jumpHeight = 50
+     else
+         jumpHeight = 0
+     end
+ end)
